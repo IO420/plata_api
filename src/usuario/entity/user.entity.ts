@@ -1,6 +1,5 @@
-import { PhysicalInventoryEntity } from 'src/inventario_fisico/entity/if.entity';
-import { LogicalInventoryEntity } from 'src/inventario_logico/entity/il.entity';
 import { RolEntity } from 'src/rol/entity/rol.entity';
+import { storageEntity } from 'src/storage/entity/storage.entity';
 import {
   Column,
   Entity,
@@ -26,9 +25,6 @@ export class UserEntiy {
   @ManyToOne(() => RolEntity, (rol) => rol.users)
   id_rol: RolEntity;
 
-  @OneToMany(()=> LogicalInventoryEntity,li=>li.id_user)
-  li:LogicalInventoryEntity[];
-
-  @OneToMany(()=> PhysicalInventoryEntity,pi=>pi.id_user)
-  pi:LogicalInventoryEntity[];
+  @OneToMany(() => storageEntity, (storage) => storage.id_user)
+  storage: storageEntity[];
 }
